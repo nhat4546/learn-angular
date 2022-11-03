@@ -1,0 +1,18 @@
+<div>
+  <input type="text" [(ngModel)]="name" placeholder="Enter name" />
+  <button (click)="addTodo()">Add todo</button>
+  <hr />
+  <hr />
+  <ul>
+    <li *ngFor="let todo of todos">
+      <button
+        (click)="clickTodo(todo)"
+        [class.selected]="selectTodo && todo.id === selectTodo.id"
+      >
+        {{ todo.id }}---{{ todo.name | uppercase }}
+      </button>
+    </li>
+  </ul>
+
+  <todo-detail [selectTodo]="selectTodo"></todo-detail>
+</div>
