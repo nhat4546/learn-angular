@@ -9,10 +9,8 @@
         (click)="clickTodo(todo)"
         [class.selected]="selectTodo && todo.id === selectTodo.id"
       >
-        {{ todo.id }}---{{ todo.name | uppercase }}
+        <a routerLink="/todo/{{todo.id}}">{{ todo.id }}---{{ todo.name | uppercase }}</a>
       </button>
     </li>
   </ul>
-
-  <todo-detail [selectTodo]="selectTodo"></todo-detail>
 </div>

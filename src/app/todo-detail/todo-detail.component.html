@@ -2,4 +2,5 @@
   <div>Selected: {{ selectTodo.id }}---{{ selectTodo.name }}</div>
   <label for="hero-name">Hero name: </label>
   <input id="hero-name" [(ngModel)]="selectTodo.name" placeholder="name" />
+  <button (click)="back()">Back</button>
 </div>
