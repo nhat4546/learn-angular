@@ -15,14 +15,14 @@ export class TodoDetailComponent implements OnInit {
     private todoService: TodoService,
     private location: Location
   ) {}
-  @Input() selectTodo?: Todo;
+  selectTodo?: any;
   ngOnInit(): void {
     this.getHero();
   }
 
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.selectTodo = this.todoService.getTodo(id);
+    this.todoService.getTodo(id).subscribe((todo) => this.selectTodo = todo);
   }
 
   back() {

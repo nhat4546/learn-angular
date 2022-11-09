@@ -11,7 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class TodoService {
   constructor(private http: HttpClient) {}
   todos: Todo[] = todos;
-  private todoUrl = 'https://jsonplaceholder.typicode.com/uers';
+  private todoUrl = 'https://jsonplaceholder.typicode.com/users';
 
   getTodos(): Observable<Todo[]> {
     // const Todos = of(this.todos);
@@ -20,8 +20,10 @@ export class TodoService {
       .get<Todo[]>(this.todoUrl)
       .pipe(catchError(this.handleError<Todo[]>('get todo', [])));
   }
-  getTodo(id: number): Todo | undefined {
-    return this.todos.find((todo: Todo) => todo.id === id);
+  getTodo(id: number) {
+    const url = `${this.todoUrl}/${id}`;
+    return this.http.get<any>(url);
+    // return this.todos.find((todo: Todo) => todo.id === id);
   }
   addTodo(name: string): void {
     this.todos.push({
