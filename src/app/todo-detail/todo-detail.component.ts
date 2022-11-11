@@ -20,9 +20,10 @@ export class TodoDetailComponent implements OnInit {
     this.getHero();
   }
 
-  getHero(): void {
+  async getHero() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.todoService.getTodo(id).subscribe((todo) => this.selectTodo = todo);
+    const todo = await this.todoService.getTodo(id); //.subscribe((todo) => this.selectTodo = todo);
+    this.selectTodo = todo;
   }
 
   back() {

@@ -7,9 +7,9 @@ import { TodoService } from './todo.service';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent {
   constructor(private todoService: TodoService) {}
-  todos: Todo[] = [];
+  todos: any;
   todo?: Todo;
   selectTodo?: Todo;
   name = '';
@@ -21,8 +21,10 @@ export class TodoComponent implements OnInit {
     this.selectTodo = { ...todo };
   }
 
-  getTodos(): void {
-    this.todoService.getTodos().subscribe((todos) => (this.todos = todos));
+  async getTodos() {
+    const data = await this.todoService.getTodos();
+    this.todos = data;
+    // this.todoService.getTodos().subscribe((todos) => (this.todos = todos));
   }
 
   addTodo(): void {

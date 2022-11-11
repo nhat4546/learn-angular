@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root',
@@ -13,16 +14,20 @@ export class TodoService {
   todos: Todo[] = todos;
   private todoUrl = 'https://jsonplaceholder.typicode.com/users';
 
-  getTodos(): Observable<Todo[]> {
+  async getTodos() {
     // const Todos = of(this.todos);
     // return Todos;
-    return this.http
-      .get<Todo[]>(this.todoUrl)
-      .pipe(catchError(this.handleError<Todo[]>('get todo', [])));
+    // return this.http
+    //   .get<Todo[]>(this.todoUrl)
+    //   .pipe(catchError(this.handleError<Todo[]>('get todo', [])));
+    const data = await axios.get(this.todoUrl);
+    return data.data;
   }
-  getTodo(id: number) {
+  async getTodo(id: number) {
     const url = `${this.todoUrl}/${id}`;
-    return this.http.get<any>(url);
+    const data = await axios.get(url);
+    return data.data;
+    // return this.http.get<any>(url);
     // return this.todos.find((todo: Todo) => todo.id === id);
   }
   addTodo(name: string): void {
