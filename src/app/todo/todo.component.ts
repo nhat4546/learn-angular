@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Todo } from './todo';
 import { TodoService } from './todo.service';
 
@@ -15,7 +15,27 @@ export class TodoComponent {
   name = '';
 
   ngOnInit(): void {
+    console.log('run ngOnInit');
+    
     this.getTodos();
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('run ngOnChanges');
+  }
+  ngDoCheck() {
+    console.log('run ngDoCheck');
+  }
+  ngAfterContentChecked() {
+    console.log('run ngAfterContentChecked');
+  }
+  ngAfterViewInit() {
+    console.log('run ngAfterViewInit');
+  }
+  ngAfterViewChecked() {
+    console.log('run ngAfterViewChecked');
+  }
+  ngOnDestroy() {
+    console.log('run ngOnDestroy');
   }
   clickTodo(todo: Todo) {
     this.selectTodo = { ...todo };

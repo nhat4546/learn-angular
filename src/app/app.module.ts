@@ -7,9 +7,10 @@ import { TodoComponent } from './todo/todo.component';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, TodoComponent, TodoDetailComponent],
+  declarations: [AppComponent, TodoComponent, TodoDetailComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     FormsModule,
